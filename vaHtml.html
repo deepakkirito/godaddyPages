@@ -18,17 +18,19 @@
                 }
             })
             $('button').click(function () {
-                console.log(username, password);
+                $('#loading').css('display','inline-block');
                 $.ajax({
                     url: `https://liveserver.glitch.me/login?userName=${username}&passWord=${password}`, success: function (result) {
-                        if(result == 'success') {
+                        if (result == 'success') {
+                            $('#loading').css('display','none');
                             window.localStorage.setItem('login', username);
                             window.location.replace(`https://main.d1kn9m3hglhdp6.amplifyapp.com/Student/personal-information?${username}`)
-                        } else if(result == 'invalid') {
+                        } else if (result == 'invalid') {
                             console.log(result);
-                            $('#alert').css('display','flex');
+                            $('#loading').css('display','none');
+                            $('#alert').css('display', 'flex');
                             setTimeout(() => {
-                                $('#alert').css('display','none');
+                                $('#alert').css('display', 'none');
                             }, 5000);
                         }
                     }
@@ -47,10 +49,8 @@
                         class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <h1
-                    style="margin-bottom:30px"
-                    >Student Login</h1>
-                    <div class="alert alert-danger" role="alert" id="alert" style="display:none";>
+                    <h1 style="margin-bottom:30px">Student Login</h1>
+                    <div class="alert alert-danger" role="alert" id="alert" style="display:none" ;>
                         Invalid Username or Password
                     </div>
                     <form id="loginForm">
@@ -68,7 +68,14 @@
 
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="button" class="btn btn-primary btn-lg"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login
+                            </button>
+                                <img src="https://cdn-icons-png.flaticon.com/512/4461/4461744.png" alt="Loading" id="loading" 
+                                style="display: none;
+                                margin-left: 20px;
+                                width: 40px;
+                                ">
+
                         </div>
                     </form>
                 </div>
