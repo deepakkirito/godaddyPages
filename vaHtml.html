@@ -22,7 +22,8 @@
                 $.ajax({
                     url: `https://liveserver.glitch.me/login?userName=${username}&passWord=${password}`, success: function (result) {
                         if(result == 'success') {
-                            window.location.replace(`http://localhost:3000/Student/personal-information?${username}`)
+                            window.localStorage.setItem('login', username);
+                            window.location.replace(`https://main.d1kn9m3hglhdp6.amplifyapp.com/Student/personal-information?${username}`)
                         } else if(result == 'invalid') {
                             console.log(result);
                             $('#alert').css('display','flex');
