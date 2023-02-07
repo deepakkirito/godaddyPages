@@ -21,7 +21,7 @@
             $('button').click(function () {
                 $('#loading').css('display','inline-block');
                 $.ajax({
-                    url: `https://liveserver.glitch.me/login?userName=${username}&passWord=${password}`, success: function (result) {
+                    url: `https://liveserver-x7b0.onrender.com/login?userName=${username}&passWord=${password}`, success: function (result) {
                         if (result == 'success') {
                             $('#loading').css('display','none');
                             window.localStorage.setItem('login', username);
